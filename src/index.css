@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@theme { --font-sans: Inter, ui-sans-serif, system-ui, sans-serif; --color-navy: #07283e; --color-cyanbrand: #008bb6; }
+:root {font-family: Inter, ui-sans-serif, system-ui, sans-serif;color:#142d3c;background:#f5f8fa;font-synthesis:none;}
+* {box-sizing:border-box;} body {margin:0;} button, input, select {font:inherit;} button{cursor:pointer;} ::selection{background:#c1ecf7;}
+.sidebar-link {display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:11px;color:#9eb6c6;font-size:14px;font-weight:500;transition:background .2s,color .2s;} .sidebar-link:hover{background:#153d54;color:white}.sidebar-link.active{background:#d9f1f8;color:#07324a;font-weight:700}
+.panel{background:white;border:1px solid #e6edf1;border-radius:18px;box-shadow:0 2px 12px rgba(7,36,56,.025)}
+.table-scroll{overflow-x:auto} .table-scroll table{width:100%;border-collapse:collapse;} .table-scroll th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8195a1;font-weight:700;padding:14px 18px;background:#f8fafb;white-space:nowrap}.table-scroll td{padding:15px 18px;font-size:13px;border-top:1px solid #edf1f4;white-space:nowrap}.table-scroll tr:hover td{background:#fbfdfe}

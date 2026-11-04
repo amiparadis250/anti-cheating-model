@@ -1,0 +1,2 @@
+import React from 'react';import {StatusBadge} from '../ui/Primitives';import {LiveBehaviorCamera} from './LiveBehaviorCamera';
+export function CameraCard({room}){return <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white"><LiveBehaviorCamera room={room}/><div className="flex justify-between items-center p-4"><div><p className="font-semibold text-sm text-[#13364a]">{room.name}</p><p className="text-xs text-slate-400 mt-1">{room.candidates} candidates</p></div><StatusBadge status={room.status}/></div></div>}
