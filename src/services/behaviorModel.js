@@ -1,8 +1,6 @@
-// Loads the Edge Impulse WebAssembly classifier (public/model) and runs it on camera frames.
-// Model: image classification, 96x96 RGB, labels: not_suspicious / suspicious.
 const BASE = `${import.meta.env.BASE_URL}model/`;
 export const THRESHOLD = Number(import.meta.env.VITE_MODEL_THRESHOLD) || 0.6;
-const RESIZE = import.meta.env.VITE_MODEL_RESIZE || 'squash'; // 'squash' | 'fit-shortest' - must match Studio's impulse image block
+const RESIZE = import.meta.env.VITE_MODEL_RESIZE || 'squash';
 
 let classifier = null, loading = null, size = {w: 96, h: 96};
 const loadScript = src => new Promise((resolve, reject) => {
@@ -14,7 +12,7 @@ const loadScript = src => new Promise((resolve, reject) => {
 export function loadBehaviorModel() {
   if (classifier) return Promise.resolve(classifier);
   if (!loading) loading = (async () => {
-    await loadScript(`${BASE}edge-impulse-standalone.js`); // defines window.Module, finds the .wasm beside itself
+    await loadScript(`${BASE}edge-impulse-standalone.js`);
     await loadScript(`${BASE}run-impulse.js`);
     const c = new window.EdgeImpulseClassifier();
     await c.init();
@@ -28,12 +26,11 @@ export function loadBehaviorModel() {
 
 const canvas = typeof document !== 'undefined' ? document.createElement('canvas') : null;
 
-// Draw a video frame into the model's input size and pack pixels as 0xRRGGBB floats (Edge Impulse image format).
 export function frameToFeatures(video) {
   const {w, h} = size;
   canvas.width = w; canvas.height = h;
   const ctx = canvas.getContext('2d', {willReadFrequently: true});
-  const vw = video.videoWidth, vh = video.videoHeight;
+  const vw = video.videoWidth || video.naturalWidth, vh = video.videoHeight || video.naturalHeight;
   if (RESIZE === 'fit-shortest') {
     const side = Math.min(vw, vh);
     ctx.drawImage(video, (vw - side) / 2, (vh - side) / 2, side, side, 0, 0, w, h);
@@ -43,7 +40,6 @@ export function frameToFeatures(video) {
   return out;
 }
 
-// Returns {label, suspicious (0-1), scores}
 export function classifyFrame(video) {
   const res = classifier.classify(frameToFeatures(video));
   const scores = Object.fromEntries(res.results.map(r => [r.label, r.value]));

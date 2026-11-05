@@ -1,7 +1,41 @@
 @import "tailwindcss";
-@theme { --font-sans: Inter, ui-sans-serif, system-ui, sans-serif; --color-navy: #07283e; --color-cyanbrand: #008bb6; }
-:root {font-family: Inter, ui-sans-serif, system-ui, sans-serif;color:#142d3c;background:#f5f8fa;font-synthesis:none;}
-* {box-sizing:border-box;} body {margin:0;} button, input, select {font:inherit;} button{cursor:pointer;} ::selection{background:#c1ecf7;}
-.sidebar-link {display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:11px;color:#9eb6c6;font-size:14px;font-weight:500;transition:background .2s,color .2s;} .sidebar-link:hover{background:#153d54;color:white}.sidebar-link.active{background:#d9f1f8;color:#07324a;font-weight:700}
-.panel{background:white;border:1px solid #e6edf1;border-radius:18px;box-shadow:0 2px 12px rgba(7,36,56,.025)}
-.table-scroll{overflow-x:auto} .table-scroll table{width:100%;border-collapse:collapse;} .table-scroll th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8195a1;font-weight:700;padding:14px 18px;background:#f8fafb;white-space:nowrap}.table-scroll td{padding:15px 18px;font-size:13px;border-top:1px solid #edf1f4;white-space:nowrap}.table-scroll tr:hover td{background:#fbfdfe}
+@theme {
+  --font-sans: Poppins, system-ui, sans-serif;
+  --color-navy: #1d1d1f;
+  --color-cyanbrand: #0071e3;
+}
+
+:root {
+  font-family: Poppins, system-ui, sans-serif;
+  color: #1d1d1f;
+  background: #f5f5f7;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f5f7; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 3px solid rgba(0, 113, 227, .35); outline-offset: 2px; }
+::selection { background: #b3d4fc; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+
+h1, h2, h3 { letter-spacing: -0.01em; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+main > * { animation: rise .45s cubic-bezier(.2, .8, .2, 1) both; }
+
+.sidebar-link { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; color: #424245; font-size: 14px; font-weight: 500; transition: background .2s, color .2s; }
+.sidebar-link:hover { background: rgba(0, 0, 0, .05); }
+.sidebar-link.active { background: rgba(0, 113, 227, .12); color: #0071e3; font-weight: 600; }
+
+.panel { background: white; border: 1px solid rgba(0, 0, 0, .05); border-radius: 22px; box-shadow: 0 1px 2px rgba(0, 0, 0, .03), 0 6px 20px rgba(0, 0, 0, .04); transition: box-shadow .3s, transform .3s; }
+.panel.lift:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(0, 0, 0, .04), 0 18px 40px rgba(0, 0, 0, .09); }
+
+.table-scroll { overflow-x: auto; }
+.table-scroll table { width: 100%; border-collapse: collapse; }
+.table-scroll th { text-align: left; font-size: 12px; color: #86868b; font-weight: 600; padding: 14px 20px; background: #fafafc; white-space: nowrap; }
+.table-scroll td { padding: 16px 20px; font-size: 13px; border-top: 1px solid #f0f0f3; white-space: nowrap; }
+.table-scroll tr:hover td { background: #fafafc; }

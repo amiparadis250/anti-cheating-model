@@ -1,2 +1,29 @@
-import React from 'react';import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom';import {AppProvider} from './context/AppContext';import {Shell} from './components/layout/Shell';import Overview from './pages/Overview';import Monitoring from './pages/Monitoring';import Alerts from './pages/Alerts';import Rooms from './pages/Rooms';import Sessions from './pages/Sessions';import Reports from './pages/Reports';import Users from './pages/Users';import Settings from './pages/Settings';
-export default function App(){return <AppProvider><BrowserRouter><Routes><Route element={<Shell/>}><Route index element={<Overview/>}/><Route path="monitoring" element={<Monitoring/>}/><Route path="alerts" element={<Alerts/>}/><Route path="rooms" element={<Rooms/>}/><Route path="sessions" element={<Sessions/>}/><Route path="reports" element={<Reports/>}/><Route path="users" element={<Users/>}/><Route path="settings" element={<Settings/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Route></Routes></BrowserRouter></AppProvider>}
+import React from 'react';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import {AppProvider} from './context/AppContext';
+import {Shell} from './components/layout/Shell';
+import Overview from './pages/Overview';
+import Alerts from './pages/Alerts';
+import Rooms from './pages/Rooms';
+import Sessions from './pages/Sessions';
+import Reports from './pages/Reports';
+import Users from './pages/Users';
+import Settings from './pages/Settings';
+import PhoneCamera from './pages/PhoneCamera';
+
+export default function App() {
+  return <AppProvider><BrowserRouter><Routes>
+    <Route path="phone-camera/:id" element={<PhoneCamera/>}/>
+    <Route element={<Shell/>}>
+      <Route index element={<Overview/>}/>
+      <Route path="monitoring" element={null}/>
+      <Route path="alerts" element={<Alerts/>}/>
+      <Route path="rooms" element={<Rooms/>}/>
+      <Route path="sessions" element={<Sessions/>}/>
+      <Route path="reports" element={<Reports/>}/>
+      <Route path="users" element={<Users/>}/>
+      <Route path="settings" element={<Settings/>}/>
+      <Route path="*" element={<Navigate to="/" replace/>}/>
+    </Route>
+  </Routes></BrowserRouter></AppProvider>;
+}
